@@ -1,0 +1,28 @@
+// unsafe
+
+#include <assert.h>
+
+struct a {
+    int value;
+};
+
+struct b {
+    int key;
+    struct a *pa;
+};
+
+void foo();
+
+void main()
+{
+    struct a a1 = {.value = 1};
+    foo();
+
+    struct b b1 = {.key = 2, .pa = &a1};
+    foo();
+
+    struct b *pb1 = &b1;    
+    //@ assert (pb1->pa -> value == 2);
+}
+
+
